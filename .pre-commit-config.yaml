@@ -1,28 +1,38 @@
 # .pre-commit-config.yaml
 repos:
-  - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v6.0.0
-    hooks:
-      - id: trailing-whitespace
-      - id: end-of-file-fixer
-      - id: check-yaml
-      - id: mixed-line-ending
-        args: [--fix=lf]
+- repo: https://github.com/pre-commit/pre-commit-hooks
+  rev: v6.0.0
+  hooks:
+  - id: trailing-whitespace
+  - id: end-of-file-fixer
+  - id: check-yaml
+  - id: mixed-line-ending
+    args: [--fix=lf]
 
-  - repo: https://github.com/DavidAnson/markdownlint-cli2
-    rev: v0.23.3
-    hooks:
-      - id: markdownlint-cli2
-        args: ["--config", ".markdownlint.yaml"]
+- repo: https://github.com/DavidAnson/markdownlint-cli2
+  rev: v0.23.3
+  hooks:
+  - id: markdownlint-cli2
+    args: ["--config", ".markdownlint.yaml"]
+  - id: markdownlint-cli2
+    alias: markdownlint-cli2-fix
+    name: markdownlint-cli2 (fix)
+    args: ["--fix", "--config", ".markdownlint.yaml"]
+    stages: [manual]
 
-  - repo: https://github.com/adrienverge/yamllint
-    rev: v1.35.1
-    hooks:
-      - id: yamllint
-        args: ["--config-file", ".yamllint.yaml"]
+- repo: https://github.com/adrienverge/yamllint
+  rev: v1.35.1
+  hooks:
+  - id: yamllint
+    args: ["--config-file", ".yamllint.yaml"]
 
-  - repo: https://github.com/macisamuele/language-formatters-pre-commit-hooks
-    rev: v2.14.0
-    hooks:
-      - id: pretty-format-yaml
-        args: ["--autofix", "--indent", "2", "--preserve-quotes"]
+- repo: https://github.com/macisamuele/language-formatters-pre-commit-hooks
+  rev: v2.14.0
+  hooks:
+  - id: pretty-format-yaml
+    args: ["--autofix", "--indent", "2", "--preserve-quotes"]
+  - id: pretty-format-yaml
+    alias: pretty-format-yaml-check
+    name: Pretty format YAML (check only)
+    args: ["--indent", "2", "--preserve-quotes"]
+    stages: [manual]
