@@ -1,4 +1,11 @@
 # .pre-commit-config.yaml
+default_install_hook_types:
+- pre-commit
+- commit-msg
+
+default_language_version:
+  python: python3.14
+
 repos:
 - repo: https://github.com/pre-commit/pre-commit-hooks
   rev: v6.0.0
@@ -36,3 +43,10 @@ repos:
     name: Pretty format YAML (check only)
     args: ["--indent", "2", "--preserve-quotes"]
     stages: [manual]
+
+- repo: https://github.com/compilerla/conventional-pre-commit
+  rev: v3.4.0
+  hooks:
+  - id: conventional-pre-commit
+    stages: [commit-msg]
+    args: []
