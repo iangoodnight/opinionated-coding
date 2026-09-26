@@ -4,27 +4,27 @@ tasks:
   install:
     desc: Install pre-commit and register git hooks
     cmds:
-      - pip install --user pre-commit
-      - pre-commit install
+    - pip install --user pre-commit
+    - pre-commit install
     status:
-      - command -v pre-commit
+    - command -v pre-commit
 
   lint:
     desc: Run every pre-commit hook against all files (mirrors CI exactly)
     cmds:
-      - pre-commit run --all-files
+    - pre-commit run --all-files
 
   lint:check:
     desc: Run every check without modifying any files (safe to run anytime)
     cmds:
-      - pre-commit run check-yaml --all-files
-      - pre-commit run yamllint --all-files
-      - pre-commit run markdownlint-cli2 --all-files
-      - pre-commit run --hook-stage manual pretty-format-yaml-check --all-files
+    - pre-commit run check-yaml --all-files
+    - pre-commit run yamllint --all-files
+    - pre-commit run markdownlint-cli2 --all-files
+    - pre-commit run --hook-stage manual pretty-format-yaml-check --all-files
 
   lint:write:
     desc: Apply every available autofix (whitespace, EOL, YAML/Markdown formatting)
     cmds:
-      - cmd: pre-commit run --all-files
-        ignore_error: true
-      - pre-commit run --hook-stage manual markdownlint-cli2-fix --all-files
+    - cmd: pre-commit run --all-files
+      ignore_error: true
+    - pre-commit run --hook-stage manual markdownlint-cli2-fix --all-files
